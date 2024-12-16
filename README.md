@@ -24,7 +24,7 @@
 > [!IMPORTANT]
 > The command can take up to **~15sec** to finished (due to RSA 2048 creation)
 
-2. Compare with `go-tpm`
+2. Compare with SKR produced by `go-tpm`
 
     ```bash
     go test -timeout 30s -run ^TestSrk$ github.com/loicsikidi/srk-interoperability-issue
@@ -57,9 +57,9 @@ FAIL
 
 ## Root cause?
 
-After a thorough investigation, it seems that the mismatch is due to a difference between templates used in `tpm2-tools` and `go-tpm`.
+After a thorough investigation, it seems that the mismatch is due to a difference between templates used in `tpm2-tools` and `go-tpm-tools`.
 
-According to *TCG Credential Profile EK 2.0* `go-tpm` filled `public.unique.buffer` with an array of 0.
+According to *TCG Credential Profile EK 2.0* `go-tpm-tools` filled `public.unique.buffer` with an array of 0.
 
 
 | Key type | TCG Spec | *go-tpm-tools* implementation |
@@ -71,7 +71,7 @@ I don't know how to do the same with `tpm2-tools`...
 
 ### Demonstration
 
-If I remove `public.unique.buffer` from `go-tpm` it matches the SRK produceds by `tpm2-tools`.
+If I remove `public.unique.buffer` from `go-tpm-tools` it matches the SRK produceds by `tpm2-tools`.
 
 ```bash
 go test -timeout 30s -run ^TestSrkWithHack$ github.com/loicsikidi/srk-interoperability-issue
