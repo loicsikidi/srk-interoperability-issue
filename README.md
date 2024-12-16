@@ -2,6 +2,9 @@
 
 *Context: when I create a SRK key with [tpm2-tools](https://github.com/tpm2-software/tpm2-tools/tree/master) (cf. `tpm2 createPrimary`) and [go-tpm](https://github.com/google/go-tpm) there are differents while I'm expecting to get the same...*
 
+
+**EDIT 12/17/2024: I didn't used `tpm2-tools` properly :sweat_smile:**
+
 ## Prequisites
 
 1. Install [tpm2-tools](https://tpm2-tools.readthedocs.io/en/latest/INSTALL/)
@@ -81,6 +84,21 @@ go test -timeout 30s -run ^TestSrkWithHack$ github.com/loicsikidi/srk-interopera
 > The command can take up to **~15sec** to finished (due to RSA 2048 creation)
 
 You should see that the test case works: 
+
+```
+ok      github.com/loicsikidi/srk-interoperability-issue
+```
+
+## Solution :tada:
+
+Thanks to the `tpm2-tools`'s maintainer support (see more here [#3446](https://github.com/tpm2-software/tpm2-tools/issues/3446)), I know how to populate `public.unique.buffer` (ie. *unique-data* flag)!
+
+```bash
+./correct_init.sh
+go test -timeout 30s -run ^TestSrk$ github.com/loicsikidi/srk-interoperability-issue
+```
+
+This time, you should see that the test case works: 
 
 ```
 ok      github.com/loicsikidi/srk-interoperability-issue
