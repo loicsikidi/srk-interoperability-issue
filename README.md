@@ -12,7 +12,7 @@
 
 ## How-to reproduce
 
-1. Produce ECC & RSA SKR with `tpm2-tools`
+1. Produce ECC & RSA SRK with `tpm2-tools`
 
     ```bash
     ./init.sh
@@ -24,7 +24,7 @@
 > [!IMPORTANT]
 > The command can take up to **~15sec** to finished (due to RSA 2048 creation)
 
-2. Compare with SKR produced by `go-tpm`
+2. Compare with SRK produced by `go-tpm`
 
     ```bash
     go test -timeout 30s -run ^TestSrk$ github.com/loicsikidi/srk-interoperability-issue
