@@ -1,7 +1,6 @@
 # [*Proof Of Concept*] SRK interoperability issues between `tpm2-tools` and `go-tpm-tools`
 
-*Context: when I create a SRK key with [tpm2-tools](https://github.com/tpm2-software/tpm2-tools/tree/master) (cf. `tpm2 createPrimary`) and [go-tpm](https://github.com/google/go-tpm) there are differents while I'm expecting to get the same...
-
+*Context: when I create a SRK key with [tpm2-tools](https://github.com/tpm2-software/tpm2-tools/tree/master) (cf. `tpm2 createPrimary`) and [go-tpm](https://github.com/google/go-tpm) there are differents while I'm expecting to get the same...*
 
 ## Prequisites
 
